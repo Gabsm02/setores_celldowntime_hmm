@@ -133,8 +133,8 @@ def adicionar_contagem_erb_e_agrupar(df: pd.DataFrame, coluna_data: str) -> pd.D
     # consolida uma linha por ERB, pegando somente o primeiro valor da data
     df_grouped = df.groupby("ERB", as_index=False).agg(
         {
-            coluna_data: "first",      # pega o primeiro valor da data
-            "QTD_ERB": "max",          # qnt total de linhas da ERB
+            coluna_data: "sum",      # SOMA os valores da ERB
+            "QTD_ERB": "max",        # total de linhas da ERB
             "REGIONAL": "first",
             "UF": "first",
             "MUNICIPIO": "first",
@@ -144,6 +144,7 @@ def adicionar_contagem_erb_e_agrupar(df: pd.DataFrame, coluna_data: str) -> pd.D
             "SETOR": "first"
         }
     )
+
 
     return df_grouped
 
